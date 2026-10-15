@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SITE } from "@/lib/site";
 import { BookCallButton } from "./BookCallButton";
 import { InstagramIcon, TikTokIcon, MailIcon, PhoneIcon } from "./Icons";
@@ -16,10 +17,10 @@ export function Footer() {
 
         <div className="f-grid">
           <div className="f-brand">
-            <a href="#top" className="logo">
+            <Link href="/" className="logo">
               {SITE.name}
               <span>{SITE.tagline}</span>
-            </a>
+            </Link>
             <p>
               Local guidance for buyers, sellers and investors across
               Cliffside Park and Bergen County, New Jersey.
@@ -36,10 +37,11 @@ export function Footer() {
 
           <nav aria-label="Explore">
             <h4>Explore</h4>
-            <a href="#listings">New listings</a>
-            <a href="#sold">Recently sold</a>
-            <a href="#area">Cliffside Park</a>
-            <a href="#about">About Amanda</a>
+            <Link href="/#listings">New listings</Link>
+            <Link href="/#sold">Recently sold</Link>
+            <Link href="/#reviews">Reviews</Link>
+            <Link href="/#area">Cliffside Park</Link>
+            <Link href="/#about">About Amanda</Link>
             <a href="#contact">Contact</a>
           </nav>
 

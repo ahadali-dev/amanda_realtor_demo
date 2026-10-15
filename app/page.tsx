@@ -1,49 +1,29 @@
-import { FEATURED, HERO_COLLAGE, HERO_IMG, SOLD, usd } from "@/lib/data";
-import { SITE } from "@/lib/site";
+import { existsSync } from "node:fs";
+import path from "node:path";
+import Link from "next/link";
+import { FEATURED, HERO_IMGS, REVIEWS, SOLD, usd } from "@/lib/data";
+import { PROOF } from "@/lib/site";
 import { BookCallButton } from "@/components/BookCallButton";
 import { EnquireLink } from "@/components/EnquireLink";
-import { EnquiryForm } from "@/components/EnquiryForm";
-import { Footer } from "@/components/Footer";
 import {
   ArrowIcon,
-  CalendarIcon,
   CheckIcon,
-  InstagramIcon,
-  MailIcon,
   PinIcon,
-  TikTokIcon,
 } from "@/components/Icons";
 import { ListingsGrid } from "@/components/ListingsGrid";
 import { Photo } from "@/components/Photo";
-import { SiteProvider } from "@/components/SiteProvider";
+import { ContactSection } from "@/components/ContactSection";
+
+// Drop a real photo at public/hero.jpg and it is used automatically.
+const hasLocalHero = existsSync(path.join(process.cwd(), "public", "hero.jpg"));
 
 export default function Home() {
+  const [heroSrc, ...heroFallbacks] = hasLocalHero ? ["/hero.jpg", ...HERO_IMGS] : HERO_IMGS;
   return (
-    <SiteProvider>
-      <div className="pbar" id="top">
-        Preview built for Amanda Roman. Listings, prices, sales, reviews and photos are sample content.
-      </div>
-
-      <nav className="nav">
-        <div className="wrap">
-          <a href="#top" className="logo">
-            {SITE.name}
-            <span>{SITE.tagline}</span>
-          </a>
-          <div className="links">
-            <a href="#listings">Listings</a>
-            <a href="#sold">Sold</a>
-            <a href="#area">Cliffside Park</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-          </div>
-          <BookCallButton />
-        </div>
-      </nav>
-
+    <>
       {/* HERO */}
       <header className="hero">
-        <Photo src={HERO_IMG} alt="" sizes="100vw" priority className="hero-bg" />
+        <Photo src={heroSrc} fallbacks={heroFallbacks} alt="" sizes="100vw" priority className="hero-bg" />
         <div className="hero-shade" />
         <div className="wrap hero-grid">
           <div className="hero-inner">
@@ -59,45 +39,28 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hero-collage" aria-label="Featured homes">
-            <Photo
-              src={FEATURED.gallery[0]}
-              alt="Featured duplex in Cliffside Park"
-              sizes="(max-width: 900px) 0px, 320px"
-              className="hc hc-main"
-            >
-              <span className="hc-chip"><b>{usd(FEATURED.price)}</b>{FEATURED.area}</span>
-            </Photo>
-            {HERO_COLLAGE.map((h, i) => (
-              <Photo
-                key={h.label}
-                src={h.img}
-                alt={`Home in ${h.label}`}
-                sizes="(max-width: 900px) 0px, 240px"
-                className={`hc hc-${i + 1}`}
-              >
-                <span className="hc-chip"><b>{usd(h.price)}</b>{h.label}</span>
-              </Photo>
-            ))}
-          </div>
+          <Link href={`/listings/${FEATURED.slug}`} className="hero-card">
+            <Photo src={FEATURED.img} alt={FEATURED.title} sizes="120px" className="hero-card-img" />
+            <div>
+              <small>Just listed</small>
+              <b>{FEATURED.title}</b>
+              <span>{usd(FEATURED.price)} · View listing →</span>
+            </div>
+          </Link>
         </div>
       </header>
 
-      {/* PROOF STRIP: no review profiles exist yet, so lead with where Amanda is active */}
+      {/* PROOF STRIP: sample numbers live in lib/site.ts */}
       <div className="wrap proof">
         <div className="box">
-          <a className="it" href={SITE.instagram} target="_blank" rel="noopener noreferrer">
-            <b><InstagramIcon /></b><strong>Instagram</strong><span>{SITE.instagramHandle}</span>
-          </a>
-          <a className="it" href={SITE.tiktok} target="_blank" rel="noopener noreferrer">
-            <b><TikTokIcon /></b><strong>TikTok</strong><span>{SITE.tiktokHandle}</span>
-          </a>
           <div className="it">
-            <b>15 min</b><strong>Free intro call</strong><span>No obligation</span>
+            <b>{PROOF.rating}</b>
+            <div className="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <span>Client rating · {PROOF.ratingSource}</span>
           </div>
-          <div className="it">
-            <b>Bergen</b><strong>County specialist</strong><span>Cliffside Park &amp; nearby</span>
-          </div>
+          <div className="it"><b>{PROOF.sold}</b><span>Homes sold</span></div>
+          <div className="it"><b>{PROOF.years}</b><span>Helping NJ families</span></div>
+          <div className="it"><b>Bergen</b><span>County specialist</span></div>
         </div>
       </div>
 
@@ -125,7 +88,7 @@ export default function Home() {
             <div className="gallery">
               <Photo src={FEATURED.gallery[0]} alt="Cliffside Park duplex exterior" sizes="(max-width: 900px) 100vw, 700px" className="main">
                 <span className="tag">Duplex</span>
-                <span className="tag oh">Open house · Sat 1–3 PM</span>
+                <span className="tag oh">Open house · {FEATURED.openHouse}</span>
               </Photo>
               <div className="thumbs">
                 <Photo src={FEATURED.gallery[1]} alt="Living room" sizes="220px" />
@@ -134,15 +97,15 @@ export default function Home() {
               </div>
             </div>
             <div className="info">
-              <div className="eyebrow">{FEATURED.area}</div>
+              <div className="eyebrow">{FEATURED.area}, NJ</div>
               <h3>{FEATURED.title}</h3>
               <div className="loc"><PinIcon />Street address on request</div>
               <div className="price">{usd(FEATURED.price)}</div>
               <div className="specs">
                 <div><b>2</b><span>Units</span></div>
-                <div><b>5</b><span>Beds</span></div>
-                <div><b>3</b><span>Baths</span></div>
-                <div><b>2,450</b><span>Sq ft</span></div>
+                <div><b>{FEATURED.beds}</b><span>Beds</span></div>
+                <div><b>{FEATURED.baths}</b><span>Baths</span></div>
+                <div><b>{FEATURED.sqft.toLocaleString("en-US")}</b><span>Sq ft</span></div>
               </div>
               <p className="desc">
                 Live in one unit and rent the other, or hold both as an investment. Ask for the full
@@ -152,9 +115,7 @@ export default function Home() {
                 <EnquireLink className="btn btn-line" type="buy" message="Hi Amanda, I'd like the floor plan for the Cliffside Park Duplex.">Floor plan</EnquireLink>
                 <EnquireLink className="btn btn-line" type="buy" message="Hi Amanda, I'd like the video tour of the Cliffside Park Duplex.">Video tour</EnquireLink>
               </div>
-              <EnquireLink className="btn btn-gold main-cta" type="buy" message="Hi Amanda, I'd like to ask about the Cliffside Park Duplex.">
-                Ask about this home
-              </EnquireLink>
+              <Link href={`/listings/${FEATURED.slug}`} className="btn btn-gold main-cta">View full details</Link>
             </div>
           </div>
 
@@ -166,12 +127,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* RECENTLY SOLD + REVIEWS */}
+      {/* RECENTLY SOLD */}
       <section className="sold-sec" id="sold">
         <div className="wrap">
           <div className="head">
-            <div><div className="eyebrow">Sold &amp; reviewed</div><h2>Recently sold</h2></div>
-            <p>Every closing, with the numbers and a word from the client.</p>
+            <div><div className="eyebrow">Track record</div><h2>Recently sold</h2></div>
+            <p>Real results for real clients in Cliffside Park and nearby towns.</p>
           </div>
           <div className="sgrid">
             {SOLD.map((s) => {
@@ -179,33 +140,45 @@ export default function Home() {
               return (
                 <article className="scard" key={s.id}>
                   <Photo src={s.img} alt={`Sold home in ${s.area}`} sizes="(max-width: 900px) 100vw, 360px" className="sphoto">
-                    <span className="ribbon">Sold</span>
+                    <span className="tag sold">Sold</span>
                   </Photo>
                   <div className="sbody">
-                    <div className="stitle">
-                      <h4>{s.area}</h4>
-                      <span>{s.type}</span>
-                    </div>
+                    <div className="stitle"><h4>{s.area}</h4><span>{s.type}</span></div>
                     <div className="snums">
                       <div><small>Listed</small><b>{usd(s.listPrice)}</b></div>
                       <div><small>Sold</small><b>{usd(s.soldPrice)}</b></div>
-                      <div>
-                        <small>Result</small>
-                        <b className={pct > 0 ? "up" : ""}>{pct > 0 ? `+${pct.toFixed(1)}%` : "At asking"}</b>
-                      </div>
+                      <div><small>Result</small><b className={pct > 0 ? "up" : ""}>{pct > 0 ? `+${pct.toFixed(1)}%` : "At asking"}</b></div>
                     </div>
                     <div className="sdays">Sold in {s.days} days</div>
-                    <figure className="squote">
-                      <div className="stars" aria-label="5 out of 5 stars">★★★★★</div>
-                      <blockquote>{s.quote}</blockquote>
-                      <figcaption><b>{s.who}</b>{s.role}</figcaption>
-                    </figure>
                   </div>
                 </article>
               );
             })}
           </div>
-          <p className="sold-src">Sample results for this preview. Real sales and client words, shared from Instagram and TikTok, go here.</p>
+          <p className="sample-note center">Sample results for this preview.</p>
+        </div>
+      </section>
+
+      {/* REVIEWS */}
+      <section className="reviews" id="reviews">
+        <div className="wrap">
+          <div className="head">
+            <div><div className="eyebrow">Client reviews</div><h2>What clients say</h2></div>
+            <div className="rating-sum">
+              <b>{PROOF.rating}</b>
+              <div><div className="stars" aria-label="5 out of 5 stars">★★★★★</div><span>{PROOF.ratingSource}</span></div>
+            </div>
+          </div>
+          <div className="rv">
+            {REVIEWS.map((r) => (
+              <figure className="card" key={r.id}>
+                <div className="stars" aria-label="5 out of 5 stars">★★★★★</div>
+                <blockquote>{r.quote}</blockquote>
+                <figcaption className="who"><b>{r.who}</b>{r.role} · {r.area}</figcaption>
+              </figure>
+            ))}
+          </div>
+          <div className="rv-src">Sample reviews for this preview. Real client words, shared on Instagram and TikTok, go here.</div>
         </div>
       </section>
 
@@ -268,43 +241,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CONTACT */}
-      <section className="contact" id="contact">
-        <div className="wrap">
-          <div>
-            <div className="eyebrow">Get in touch</div>
-            <h2 className="h2">Tell me what you&apos;re looking for.</h2>
-            <p className="lead">Send a quick message and I&apos;ll get back to you. Prefer Instagram or TikTok? That works too.</p>
-            <div className="ways">
-              <a className="way" href={SITE.instagram} target="_blank" rel="noopener noreferrer">
-                <div className="ic"><InstagramIcon /></div>
-                <div><b>Instagram</b><span>{SITE.instagramHandle}</span></div>
-              </a>
-              <a className="way" href={SITE.tiktok} target="_blank" rel="noopener noreferrer">
-                <div className="ic"><TikTokIcon /></div>
-                <div><b>TikTok</b><span>{SITE.tiktokHandle}</span></div>
-              </a>
-              <a className="way" href={`mailto:${SITE.email}`}>
-                <div className="ic"><MailIcon /></div>
-                <div><b>Email</b><span>{SITE.email}</span></div>
-              </a>
-              <BookCallButton className="way way-btn">
-                <div className="ic"><CalendarIcon /></div>
-                <div><b>Book a call</b><span>Free 15-minute call, pick a time that suits you</span></div>
-              </BookCallButton>
-            </div>
-          </div>
-          <EnquiryForm />
-        </div>
-      </section>
-
-      <Footer />
-
-      <div className="mbar">
-        <a href={SITE.instagram} target="_blank" rel="noopener noreferrer">Message</a>
-        <a href="#contact">Enquire</a>
-        <BookCallButton className="p">Book a call</BookCallButton>
-      </div>
-    </SiteProvider>
+      <ContactSection />
+    </>
   );
 }

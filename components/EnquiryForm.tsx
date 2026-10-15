@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useId, useState, type FormEvent } from "react";
 import { useSite, type EnquiryType } from "./SiteProvider";
 
 const TYPES: { id: EnquiryType; label: string }[] = [
@@ -13,6 +13,8 @@ const TYPES: { id: EnquiryType; label: string }[] = [
 export function EnquiryForm() {
   const { type, setType, message, setMessage } = useSite();
   const [sent, setSent] = useState(false);
+  const uid = useId();
+  const id = (n: string) => `${uid}-${n}`;
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -40,36 +42,36 @@ export function EnquiryForm() {
             <input
               type="radio"
               name="type"
-              id={`t-${t.id}`}
+              id={id(`t-${t.id}`)}
               checked={type === t.id}
               onChange={() => setType(t.id)}
             />
-            <label htmlFor={`t-${t.id}`}>{t.label}</label>
+            <label htmlFor={id(`t-${t.id}`)}>{t.label}</label>
           </span>
         ))}
       </div>
       <div className="row">
         <div>
-          <label htmlFor="n">Name</label>
-          <input id="n" name="name" required placeholder="Your name" autoComplete="name" />
+          <label htmlFor={id("n")}>Name</label>
+          <input id={id("n")} name="name" required placeholder="Your name" autoComplete="name" />
         </div>
         <div>
-          <label htmlFor="p">Phone</label>
-          <input id="p" name="phone" type="tel" placeholder="(201) 555-0123" autoComplete="tel" />
+          <label htmlFor={id("p")}>Phone</label>
+          <input id={id("p")} name="phone" type="tel" placeholder="(201) 555-0123" autoComplete="tel" />
         </div>
       </div>
-      <label htmlFor="e">Email</label>
-      <input id="e" name="email" type="email" required placeholder="you@email.com" autoComplete="email" />
-      <label htmlFor="when">When are you hoping to move?</label>
-      <select id="when" name="when">
+      <label htmlFor={id("e")}>Email</label>
+      <input id={id("e")} name="email" type="email" required placeholder="you@email.com" autoComplete="email" />
+      <label htmlFor={id("when")}>When are you hoping to move?</label>
+      <select id={id("when")} name="when">
         <option>As soon as possible</option>
         <option>In 1–3 months</option>
         <option>In 3–6 months</option>
         <option>Just exploring</option>
       </select>
-      <label htmlFor="m">Message</label>
+      <label htmlFor={id("m")}>Message</label>
       <textarea
-        id="m"
+        id={id("m")}
         name="message"
         value={message}
         onChange={(e) => setMessage(e.target.value)}

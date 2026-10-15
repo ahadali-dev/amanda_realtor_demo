@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Poppins } from "next/font/google";
 import "./globals.css";
+import { Footer } from "@/components/Footer";
+import { MobileBar } from "@/components/MobileBar";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteProvider } from "@/components/SiteProvider";
 
 const serif = Cormorant_Garamond({
   variable: "--font-serif",
@@ -23,7 +27,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable}`}>
-      <body>{children}</body>
+      <body>
+        <SiteProvider>
+          <SiteHeader />
+          {children}
+          <Footer />
+          <MobileBar />
+        </SiteProvider>
+      </body>
     </html>
   );
 }

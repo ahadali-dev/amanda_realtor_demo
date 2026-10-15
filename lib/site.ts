@@ -14,3 +14,11 @@ export const SITE = {
   // While empty, "Book a call" shows the demo preview modal instead.
   calendlyUrl: "",
 };
+
+// Sample numbers for the preview. Replace with Amanda's real figures.
+export const PROOF = {
+  rating: "5.0",
+  ratingSource: "Instagram & TikTok clients",
+  sold: "48+",
+  years: "6 yrs",
+};
