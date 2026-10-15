@@ -2,6 +2,7 @@ import Link from "next/link";
 import { HashLink } from "./HashLink";
 import { SITE } from "@/lib/site";
 import { BookCallButton } from "./BookCallButton";
+import { MobileMenu } from "./MobileMenu";
 
 export function SiteHeader() {
   return (
@@ -22,7 +23,10 @@ export function SiteHeader() {
             <HashLink href="/#area">Cliffside Park</HashLink>
             <HashLink href="/#about">About</HashLink>
           </div>
-          <BookCallButton />
+          <div className="nav-right">
+            <BookCallButton />
+            <MobileMenu />
+          </div>
         </div>
       </nav>
     </>
