@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HashLink } from "./HashLink";
 import { SITE } from "@/lib/site";
 import { BookCallButton } from "./BookCallButton";
 import { InstagramIcon, TikTokIcon, MailIcon, PhoneIcon } from "./Icons";
@@ -37,11 +38,11 @@ export function Footer() {
 
           <nav aria-label="Explore">
             <h4>Explore</h4>
-            <Link href="/#listings">New listings</Link>
-            <Link href="/#sold">Recently sold</Link>
-            <Link href="/#reviews">Reviews</Link>
-            <Link href="/#area">Cliffside Park</Link>
-            <Link href="/#about">About Amanda</Link>
+            <HashLink href="/#listings">New listings</HashLink>
+            <HashLink href="/#sold">Recently sold</HashLink>
+            <HashLink href="/#reviews">Reviews</HashLink>
+            <HashLink href="/#area">Cliffside Park</HashLink>
+            <HashLink href="/#about">About Amanda</HashLink>
             <a href="#contact">Contact</a>
           </nav>
 

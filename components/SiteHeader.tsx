@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HashLink } from "./HashLink";
 import { SITE } from "@/lib/site";
 import { BookCallButton } from "./BookCallButton";
 
@@ -15,11 +16,11 @@ export function SiteHeader() {
             <span>{SITE.tagline}</span>
           </Link>
           <div className="links">
-            <Link href="/#listings">Listings</Link>
-            <Link href="/#sold">Sold</Link>
-            <Link href="/#reviews">Reviews</Link>
-            <Link href="/#area">Cliffside Park</Link>
-            <Link href="/#about">About</Link>
+            <HashLink href="/#listings">Listings</HashLink>
+            <HashLink href="/#sold">Sold</HashLink>
+            <HashLink href="/#reviews">Reviews</HashLink>
+            <HashLink href="/#area">Cliffside Park</HashLink>
+            <HashLink href="/#about">About</HashLink>
           </div>
           <BookCallButton />
         </div>
