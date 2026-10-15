@@ -206,7 +206,7 @@ export default function Home() {
       {/* ABOUT */}
       <section className="about" id="about">
         <div className="wrap">
-          <Photo src="/amanda.jpg" alt="Amanda Roman" sizes="(max-width: 900px) 100vw, 480px" className="portrait">
+          <Photo src="/amanda.webp" alt="Amanda Roman" sizes="(max-width: 900px) 100vw, 480px" className="portrait">
             <span className="monogram" aria-hidden="true">AR</span>
           </Photo>
           <div>
