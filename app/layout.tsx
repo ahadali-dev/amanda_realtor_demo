@@ -19,6 +19,7 @@ const sans = Poppins({
 });
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: "Amanda Roman | Realtor in Cliffside Park, NJ",
   description:
     "Amanda Roman, Realtor serving Cliffside Park and Bergen County, NJ. See new listings, recent sales, send an enquiry or book a call.",

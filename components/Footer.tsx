@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { HashLink } from "./HashLink";
-import { SITE } from "@/lib/site";
+import { SERVICE_AREAS, SITE } from "@/lib/site";
 import { BookCallButton } from "./BookCallButton";
 import { InstagramIcon, TikTokIcon, MailIcon, PhoneIcon } from "./Icons";
 
@@ -64,11 +64,11 @@ export function Footer() {
         </div>
 
         <div className="f-areas">
-          <b>Areas served:</b> Cliffside Park · Fairview · Fort Lee · Edgewater · Palisades Park · North Bergen · Ridgefield · Englewood
+          <b>Areas served:</b> {SERVICE_AREAS.join(" · ")} and nearby Bergen County
         </div>
 
         <div className="f-bottom">
-          <div>© 2026 {SITE.name}, Realtor® · {SITE.brokerage}</div>
+          <div>© 2026 {SITE.name}, Realtor®{SITE.brokerage ? ` · ${SITE.brokerage}` : ""}</div>
           <div className="f-legal">
             <span className="eho" title="Equal Housing Opportunity">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M3 11l9-7 9 7M5 10v10h14V10M8 14h8M8 17h8" /></svg>
