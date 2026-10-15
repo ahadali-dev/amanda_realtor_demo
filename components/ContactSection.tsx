@@ -1,7 +1,7 @@
 import { SITE } from "@/lib/site";
 import { BookCallButton } from "./BookCallButton";
 import { EnquiryForm } from "./EnquiryForm";
-import { CalendarIcon, InstagramIcon, MailIcon, TikTokIcon } from "./Icons";
+import { CalendarIcon, InstagramIcon, MailIcon, PhoneIcon, TikTokIcon } from "./Icons";
 
 export function ContactSection() {
   return (
@@ -19,6 +19,10 @@ export function ContactSection() {
             <a className="way" href={SITE.tiktok} target="_blank" rel="noopener noreferrer">
               <div className="ic"><TikTokIcon /></div>
               <div><b>TikTok</b><span>{SITE.tiktokHandle}</span></div>
+            </a>
+            <a className="way" href={`tel:${SITE.phone.replace(/\D/g, "")}`}>
+              <div className="ic"><PhoneIcon /></div>
+              <div><b>Call or text</b><span>{SITE.phone}</span></div>
             </a>
             <a className="way" href={`mailto:${SITE.email}`}>
               <div className="ic"><MailIcon /></div>

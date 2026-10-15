@@ -206,13 +206,18 @@ export default function Home() {
             <div className="eyebrow">Meet Amanda</div>
             <h2 className="h2">Local guidance, from first question to closing day.</h2>
             <p>
-              A short introduction goes here: how long Amanda has helped buyers and sellers in
-              Cliffside Park, what she loves about the area, and the kind of clients she works with.
+              Buying or selling a home is more than a transaction. It&apos;s a major life decision.
+              As your Realtor®, I&apos;m here to make the process feel seamless, personalized, and
+              stress-free. From finding the right property to negotiating the best terms, I&apos;ll be
+              by your side every step of the way, making your goals my priority.
             </p>
+            <div className="specialties">
+              <span>Residential</span><span>Investment</span><span>Luxury</span>
+            </div>
             <div className="points">
               <div><CheckIcon />Knows Cliffside Park and Bergen County</div>
               <div><CheckIcon />Reachable by Instagram, TikTok, email or phone</div>
-              <div><CheckIcon />Buyers, sellers and investors</div>
+              <div><CheckIcon />Residential, investment and luxury homes</div>
             </div>
             <BookCallButton>Book a call with Amanda</BookCallButton>
           </div>

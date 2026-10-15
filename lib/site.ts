@@ -7,8 +7,8 @@ export const SITE = {
   // TODO: confirm Amanda's real TikTok handle.
   tiktok: "https://www.tiktok.com/@amandaromanrealtor",
   tiktokHandle: "@amandaromanrealtor",
-  email: "hello@amandaroman.com", // placeholder
-  phone: "(201) 555-0123", // placeholder
+  email: "amandaromanrealty@gmail.com",
+  phone: "(201) 803-4912",
   brokerage: "Brokerage name", // placeholder
   // Paste Amanda's Calendly link here (e.g. "https://calendly.com/amanda/15min").
   // While empty, "Book a call" shows the demo preview modal instead.
