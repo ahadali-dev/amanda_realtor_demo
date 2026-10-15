@@ -161,6 +161,11 @@ export const REVIEWS: Review[] = [
   { id: "r1", quote: "Amanda priced our home right and we had offers within the first weekend. She kept us calm the whole way.", who: "Sample client", role: "Seller", area: "Fort Lee" },
   { id: "r2", quote: "She explained every step and found us a place we would never have found on our own. First-time buyers, zero stress.", who: "Sample client", role: "First-time buyer", area: "Edgewater" },
   { id: "r3", quote: "Clear communication, fast replies and a great eye for multi-family. Exactly what an investor wants.", who: "Sample client", role: "Investor", area: "Cliffside Park" },
+  { id: "r4", quote: "We were nervous about selling our first home. Amanda walked us through pricing, staging and offers, and we closed over asking.", who: "Sample client", role: "Seller", area: "Cliffside Park" },
+  { id: "r5", quote: "She answered my questions on Instagram at all hours. That kind of responsiveness is rare, and it won us the house.", who: "Sample client", role: "Buyer", area: "Fairview" },
+  { id: "r6", quote: "Amanda found us a two-family that pays for half the mortgage. She really understands numbers and neighbourhoods.", who: "Sample client", role: "Investor", area: "North Bergen" },
+  { id: "r7", quote: "Honest advice, even when it wasn't what we wanted to hear. We trusted her completely and it paid off.", who: "Sample client", role: "Buyer", area: "Fort Lee" },
+  { id: "r8", quote: "From the first call to the closing table, she made a stressful move feel simple. Highly recommend.", who: "Sample client", role: "Seller", area: "Edgewater" },
 ];
 
 export const usd = (n: number) =>

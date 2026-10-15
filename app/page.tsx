@@ -12,6 +12,7 @@ import {
 } from "@/components/Icons";
 import { ListingsGrid } from "@/components/ListingsGrid";
 import { Photo } from "@/components/Photo";
+import { ReviewsCarousel } from "@/components/ReviewsCarousel";
 import { ContactSection } from "@/components/ContactSection";
 
 // Drop a real photo at public/hero.jpg and it is used automatically.
@@ -169,15 +170,7 @@ export default function Home() {
               <div><div className="stars" aria-label="5 out of 5 stars">★★★★★</div><span>{PROOF.ratingSource}</span></div>
             </div>
           </div>
-          <div className="rv">
-            {REVIEWS.map((r) => (
-              <figure className="card" key={r.id}>
-                <div className="stars" aria-label="5 out of 5 stars">★★★★★</div>
-                <blockquote>{r.quote}</blockquote>
-                <figcaption className="who"><b>{r.who}</b>{r.role} · {r.area}</figcaption>
-              </figure>
-            ))}
-          </div>
+          <ReviewsCarousel reviews={REVIEWS} />
           <div className="rv-src">Sample reviews for this preview. Real client words, shared on Instagram and TikTok, go here.</div>
         </div>
       </section>
