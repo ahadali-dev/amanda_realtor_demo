@@ -70,12 +70,11 @@ button{font-family:inherit}
 
 /* proof strip */
 .proof{margin-top:-64px;position:relative;z-index:5}
-.proof .box{background:var(--white);border-radius:20px;box-shadow:0 18px 50px rgba(60,40,15,.13);display:grid;}
+.proof .box{background:var(--white);border-radius:20px;box-shadow:0 18px 50px rgba(60,40,15,.13);display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
 .proof .it{min-width:0;overflow-wrap:anywhere;padding:24px 14px;text-align:center;display:flex;flex-direction:column;align-items:center}
-.proof .it{padding:28px 20px}
-.proof .areas{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px}
-.proof .areas li{border:1px solid var(--line);background:var(--cream);border-radius:999px;padding:5px 16px;font-size:13.5px;color:var(--soft)}
-.proof b{display:flex;align-items:center;justify-content:center;height:auto;font-family:var(--font-serif),serif;font-size:clamp(28px,4vw,38px);line-height:1.1;text-align:center;color:var(--ink);font-weight:600}
+.proof .it+.it{border-left:1px solid var(--line)}
+.proof .stars{color:var(--gold);font-size:14px;letter-spacing:2px;margin-top:4px}
+.proof b{display:flex;align-items:center;justify-content:center;height:38px;font-family:var(--font-serif),serif;font-size:36px;line-height:1;color:var(--ink);font-weight:600}
 .proof span{font-size:13px;color:var(--soft)}
 
 section{padding:96px 0}
@@ -321,6 +320,9 @@ textarea{min-height:100px;resize:vertical}
  .links{display:none}
  .mmenu{display:block}
  .hero{min-height:0}
+ .proof .box{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .proof .it:nth-child(3){border-left:none}
+ .proof .it:nth-child(n+3){border-top:1px solid var(--line)}
  .hero-grid{grid-template-columns:1fr}
  .hero-card{display:none}
  .hero-inner{padding:64px 0 110px}
@@ -350,7 +352,8 @@ textarea{min-height:100px;resize:vertical}
  .row{grid-template-columns:1fr;gap:0}
  .enq{padding:26px 20px}
  .nav-right>.btn{display:none}
- .proof .it{padding:24px 14px}
+ .proof .it{padding:20px 8px}
+ .proof span{font-size:11px;letter-spacing:-.2px}
  .specs{grid-template-columns:repeat(2,1fr)}
  .specs div:nth-child(3){border-left:none}
  .specs div:nth-child(n+3){border-top:1px solid var(--line)}

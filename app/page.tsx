@@ -2,7 +2,7 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 import Link from "next/link";
 import { FEATURED, HERO_IMGS, REVIEWS, SOLD, usd } from "@/lib/data";
-import { SERVICE_AREAS } from "@/lib/site";
+import { PROOF } from "@/lib/site";
 import { BookCallButton } from "@/components/BookCallButton";
 import { EnquireLink } from "@/components/EnquireLink";
 import {
@@ -51,17 +51,17 @@ export default function Home() {
         </div>
       </header>
 
-      {/* PROOF STRIP: only facts we know. Add real stats from Amanda when she confirms them. */}
+      {/* PROOF STRIP: sample numbers live in lib/site.ts */}
       <div className="wrap proof">
         <div className="box">
           <div className="it">
-            <b>Bergen County specialist</b>
-            <ul className="areas" aria-label="Service areas">
-              {SERVICE_AREAS.map((a) => (
-                <li key={a}>{a}</li>
-              ))}
-            </ul>
+            <b>{PROOF.rating}</b>
+            <div className="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <span>Client rating · {PROOF.ratingSource}</span>
           </div>
+          <div className="it"><b>{PROOF.sold}</b><span>Homes sold</span></div>
+          <div className="it"><b>{PROOF.years}</b><span>Helping NJ families</span></div>
+          <div className="it"><b>Bergen</b><span>County specialist</span></div>
         </div>
       </div>
 
