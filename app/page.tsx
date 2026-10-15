@@ -57,7 +57,6 @@ export default function Home() {
           <div className="it">
             <b>{PROOF.rating}</b>
             <div className="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <span>Client rating · {PROOF.ratingSource}</span>
           </div>
           <div className="it"><b>{PROOF.sold}</b><span>Homes sold</span></div>
           <div className="it"><b>{PROOF.years}</b><span>Helping NJ families</span></div>

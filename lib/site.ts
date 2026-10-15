@@ -23,7 +23,6 @@ export const SERVICE_AREAS = ["Cliffside Park", "Fort Lee", "Edgewater", "Fairvi
 // Sample numbers for the preview. Replace with Amanda's real figures.
 export const PROOF = {
   rating: "5.0",
-  ratingSource: "Instagram & TikTok clients",
   sold: "48+",
   years: "6 yrs",
 };
